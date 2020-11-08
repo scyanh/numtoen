@@ -72,3 +72,8 @@ heroku open -a yourappname
 ```
 
 
+#### Live API Documentation...
+https://infinite-falls-90558.herokuapp.com/swagger/index.html
+
+#### Live API Endpoint to translate numbers...
+https://infinite-falls-90558.herokuapp.com/num_to_english?number=123
