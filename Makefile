@@ -1,5 +1,5 @@
 SHELL:=/bin/bash -O extglob
-BINARY=ms-api
+BINARY=numtoen
 VERSION=1.0
 LDFLAGS=-ldflags "-X main.Version=${VERSION}"
 
