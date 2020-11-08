@@ -50,7 +50,7 @@ func convert(number int64, numberString string) string {
 	j := 0
 	groupIdx := 0
 	numberByGroup := 0
-	for i, _ := range numberString {
+	for i := range numberString {
 		numberFromString, _ := strconv.Atoi(string(numberString[len(numberString)-i-1]))
 		numberByGroup += numberFromString * int(math.Pow10(j))
 
@@ -82,7 +82,7 @@ func convert(number int64, numberString string) string {
 		}
 	}
 
-	// attach "minus" if is negative number
+	// attach "minus" if it is negative number
 	if number < 0 {
 		combined = "minus " + combined
 	}
