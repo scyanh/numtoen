@@ -1,0 +1,52 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/num_to_english": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Translator"
+                ],
+                "summary": "Translator response",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "number",
+                        "name": "number",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/numberController.GetTranslationNumberSwagger"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "numberController.GetTranslationNumberSwagger": {
+            "type": "object",
+            "properties": {
+                "num_in_english": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+definitions:
+  numberController.GetTranslationNumberSwagger:
+    properties:
+      num_in_english:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /num_to_english:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: number
+        in: query
+        name: number
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/numberController.GetTranslationNumberSwagger'
+      summary: Translator response
+      tags:
+      - Translator
+swagger: "2.0"
