@@ -11,6 +11,7 @@ RUN go get -d -v ./...
 
 # Install the package
 RUN go install -v ./...
+RUN go build -o numtoen main.go
 
 EXPOSE 8080
 CMD ["./numtoen"]
