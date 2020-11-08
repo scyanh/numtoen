@@ -1,13 +1,17 @@
-GO_BUILD_ENV := CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-DOCKER_BUILD=$(shell pwd)/.docker_build
-DOCKER_CMD=$(DOCKER_BUILD)/go-getting-started
+SHELL:=/bin/bash -O extglob
+BINARY=ms-api
+VERSION=1.0
+LDFLAGS=-ldflags "-X main.Version=${VERSION}"
 
-$(DOCKER_CMD): clean
-	mkdir -p $(DOCKER_BUILD)
-	$(GO_BUILD_ENV) go build -v -o $(DOCKER_CMD) .
+#go tool commands
+build:
+	go build ${LDFLAGS} -o ${BINARY} cmd/main.go
 
-clean:
-	rm -rf $(DOCKER_BUILD)
+run:
+	@go run cmd/main.go
 
-heroku: $(DOCKER_CMD)
-	heroku container:push web
+## docker compose
+up:
+	docker-compose up --build
+down:
+	docker-compose down --remove-orphans
