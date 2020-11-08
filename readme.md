@@ -1,40 +1,74 @@
 # Welcome to NumToEn!
 
 This is an API written in golang to translate a number into english words.
+The endpoint accepts numbers between -9223372036854775808 and 9223372036854775807
 
-### For running locally
-$ go run go.main
+## For running locally with Docker container
 
-### For running tests
-$ go test -v
+Download from DockerHub
+```shell script
+docker pull scyanh/numtoen:latest
+```
 
-### For Deployment on Heroku
-Create an App on Heroku, in this example I created one called "numtoen"
+Run container
+```shell script
+docker run -d -p 5000:5000 scyanh/numtoen:latest
+```
 
-Install the Heroku CLI
-Download and install the Heroku CLI.
+#### Endpoint to translate numbers...
+http://localhost:5000/num_to_english?number=123
 
-If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+#### Endpoint to documentation...
+http://localhost:5000/swagger/index.html
 
-$ heroku login
-Create a new Git repository
-Initialize a git repository in a new or existing directory
 
-$ cd my-project/
-$ git init
-$ heroku git:remote -a numtoen
+### Run the tests
+Open Docker cli from your container and run
+```shell script
+go test -v
+```
 
-Deploy your application committing your code to the repository and deploy it to Heroku using Git.
+## For Deployment the container on Heroku
 
-$ git add .
-$ git commit -am "make it better"
-$ git push heroku master
+Clone repository and navigate to the app’s directory
+```shell script
+git clone https://github.com/scyanh/numtoen
+cd numtoen
+```
 
-Existing Git repository
-For existing repositories, simply add the heroku remote
+Download and install the Heroku CLI
+```shell script
+brew tap heroku/brew && brew install heroku
+```
 
-$ heroku git:remote -a numtoen
+Log in to Heroku
+```shell script
+heroku login
+```
 
-### Swagger API documentation 
-/swagger/index.html
+Log in to Container Registry:
+```shell script
+heroku container:login
+```
+
+Create a Heroku app (it will create a random appname)
+```shell script
+heroku create
+```
+
+Build the image and push to Container Registry:
+```shell script
+heroku container:push web -a yourappname
+```
+
+Then release the image to your app:
+```shell script
+heroku container:release web -a yourappname
+```
+
+Now open the app in your browser:
+```shell script
+heroku open -a yourappname
+```
+
 
