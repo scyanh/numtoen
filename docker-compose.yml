@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    links: # app needs that redis is deployed successfully before app runs
+      - redis
+    environment: # Pass environment variables to the service
+      ENV_REDIS_LOCAL_URL: "redis:6379" #the key is the same as the service name (redis)
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379" #forward port from Redis to the OS
